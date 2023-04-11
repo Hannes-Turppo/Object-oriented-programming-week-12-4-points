@@ -2,6 +2,7 @@ package fi.zaphkiel.kauppalista_ht;
 
 import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -28,15 +29,27 @@ public class ArticleViewAdapter extends RecyclerView.Adapter<ArticleViewHolder> 
     public void onBindViewHolder(@NonNull ArticleViewHolder holder, int position) {
         holder.textView.setText(articles.get(position).textField);
 
-        holder.iBtnDelete.setOnClickListener(view -> {
+        holder.BtnDelete.setOnClickListener(view -> {
             int pos = holder.getAdapterPosition();
             Storage.getInstance().deleteArticle(articles.get(pos));
             notifyItemRemoved(pos);
             storage.saveStorage(context);
         });
 
-        holder.iBtnEdit.setOnClickListener(view -> {
-
+        holder.BtnEdit.setOnClickListener(view -> {
+            int pos = holder.getAdapterPosition();
+            if (holder.editText.getVisibility() == View.VISIBLE) {
+                Article article = Storage.getInstance().getArticle(pos);
+                article.setTextField(holder.editText.getText().toString());
+                holder.editText.setVisibility(View.GONE);
+                holder.textView.setVisibility(View.VISIBLE);
+                storage.saveStorage(context);
+                notifyDataSetChanged();
+            } else {
+                holder.editText.setText(holder.textView.getText().toString());
+                holder.editText.setVisibility(View.VISIBLE);
+                holder.textView.setVisibility(View.GONE);
+            }
         });
     }
 

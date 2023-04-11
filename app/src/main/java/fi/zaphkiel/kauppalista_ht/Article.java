@@ -14,4 +14,7 @@ public class Article implements Serializable {
     public Article(String textField) {
         this.textField = textField;
     }
+    public void setTextField(String textField) {
+        this.textField = textField;
+    }
 }

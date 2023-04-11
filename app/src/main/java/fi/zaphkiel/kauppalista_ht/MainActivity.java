@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.Intent;
-import android.icu.text.Transliterator;
 import android.os.Bundle;
 import android.view.View;
 
@@ -34,11 +33,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void switchToAddArticle(View view) {
         Intent intent = new Intent(this, AddArticleActivity.class);
-        startActivity(intent);
-    }
-
-    public void switchToEditArticle(View view) {
-        Intent intent = new Intent(this, EditArticleActivity.class);
         startActivity(intent);
     }
 
