@@ -27,12 +27,12 @@ public class ArticleViewAdapter extends RecyclerView.Adapter<ArticleViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull ArticleViewHolder holder, int position) {
-        holder.textView.setText(articles.get(position).textField);
+        holder.textView.setText(articles.get(position).getTextField());
 
         holder.BtnDelete.setOnClickListener(view -> {
             int pos = holder.getAdapterPosition();
             Storage.getInstance().deleteArticle(articles.get(pos));
-            notifyItemRemoved(pos);
+            notifyDataSetChanged();
             storage.saveStorage(context);
         });
 

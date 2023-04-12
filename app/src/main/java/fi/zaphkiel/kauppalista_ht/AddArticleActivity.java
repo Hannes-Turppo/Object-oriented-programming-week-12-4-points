@@ -21,16 +21,15 @@ public class AddArticleActivity extends AppCompatActivity {
         newArticleInfo = findViewById(R.id.txtInArticleInfo);
     }
 
-    public void saveNewArticle(View view) {
-        article = new Article();
-        article.textField = String.valueOf(newArticleInfo.getText());
-        storage.addArticle(article);
-        storage.saveStorage(this);
-        switchToMain(view);
-    }
-
     public void switchToMain(View view) {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
+    }
+    public void saveNewArticle(View view) {
+        article = new Article();
+        article.setTextField(String.valueOf(newArticleInfo.getText()));
+        storage.addArticle(article);
+        storage.saveStorage(this);
+        switchToMain(view);
     }
 }

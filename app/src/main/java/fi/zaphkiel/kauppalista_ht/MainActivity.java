@@ -13,22 +13,19 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     Storage storage;
     Context context = this;
-
+    RecyclerView.Adapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        storage= Storage.getInstance();
+        storage = Storage.getInstance();
         storage.loadStorage(context);
         recyclerView = findViewById(R.id.rvArticleList);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(new ArticleViewAdapter(getApplicationContext(), storage.getStorageList()));
-    }
-
-    public void sortList(View view) {
-
+        adapter = recyclerView.getAdapter();
     }
 
     public void switchToAddArticle(View view) {
@@ -36,4 +33,14 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void sortByTime(View view) {
+        storage.timeSort();
+        storage.saveStorage(context);
+        adapter.notifyDataSetChanged();
+    }
+    public void sortByText(View view) {
+        storage.alphabethicalSort();
+        storage.saveStorage(context);
+        adapter.notifyDataSetChanged();
+    }
 }

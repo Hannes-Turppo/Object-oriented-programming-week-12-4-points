@@ -6,10 +6,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 
 public class Storage {
     private final String SAVEDFILE = "storageListFile.data";
@@ -74,10 +72,10 @@ public class Storage {
     }
 
     public void alphabethicalSort() {
-
+        Collections.sort(storageList, (article, t1) -> article.getTextField().compareTo(t1.getTextField()));
     }
 
     public void timeSort() {
-
+        Collections.sort(storageList, (article, t1) -> article.getDate().compareTo(t1.getDate()));
     }
 }

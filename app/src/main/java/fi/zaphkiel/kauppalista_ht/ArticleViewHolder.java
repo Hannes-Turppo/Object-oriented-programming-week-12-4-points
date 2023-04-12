@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 public class ArticleViewHolder extends RecyclerView.ViewHolder {
     TextView textView;
     EditText editText;
-    Button BtnDelete, BtnEdit;
+    Button BtnDelete, BtnEdit, btnSortTime, btnSortText;
 
     public ArticleViewHolder(@NonNull View itemView) {
         super(itemView);
@@ -19,6 +19,5 @@ public class ArticleViewHolder extends RecyclerView.ViewHolder {
         textView = itemView.findViewById(R.id.txtArticleInfo);
         BtnDelete = itemView.findViewById(R.id.btnDelete);
         BtnEdit = itemView.findViewById(R.id.btnEdit);
-
     }
 }
