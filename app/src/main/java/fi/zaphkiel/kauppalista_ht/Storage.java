@@ -12,6 +12,7 @@ import java.util.Collections;
 public class Storage {
     private final String SAVEDFILE = "storageListFile.data";
     private ArrayList<Article> storageList = new ArrayList<>();
+    private ArrayList<Article> importantList = new ArrayList<>();
 
     private static Storage storage = null;
     private Storage() {
@@ -22,6 +23,18 @@ public class Storage {
             storage = new Storage();
         }
         return storage;
+    }
+
+    public ArrayList<Article> getImportantList() {
+        return importantList;
+    }
+
+    public void addImportant(Article article) {
+        importantList.add(article);
+    }
+
+    public void deleteImportant(Article article) {
+        importantList.remove(article);
     }
 
     public ArrayList<Article> getStorageList() {
@@ -39,6 +52,9 @@ public class Storage {
 
     public void deleteArticle(Article article) {
         storageList.remove(article);
+        if (article.isImportant()) {
+            deleteImportant(article);
+        }
     }
 
     public void saveStorage(Context context) {

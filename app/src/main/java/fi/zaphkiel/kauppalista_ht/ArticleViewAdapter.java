@@ -28,6 +28,11 @@ public class ArticleViewAdapter extends RecyclerView.Adapter<ArticleViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull ArticleViewHolder holder, int position) {
         holder.textView.setText(articles.get(position).getTextField());
+        if (articles.get(position).isImportant()) {
+            holder.imgImportant.setVisibility(View.VISIBLE);
+        } else {
+            holder.imgImportant.setVisibility(View.GONE);
+        }
 
         holder.BtnDelete.setOnClickListener(view -> {
             int pos = holder.getAdapterPosition();
